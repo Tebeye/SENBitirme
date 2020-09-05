@@ -1,0 +1,11 @@
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\bin\Debug\BitirmeProjesiArayuzProjesi.exe.config
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\bin\Debug\BitirmeProjesiArayuzProjesi.exe
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\bin\Debug\BitirmeProjesiArayuzProjesi.pdb
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.csprojAssemblyReference.cache
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.LoginPage.resources
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.Properties.Resources.resources
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.csproj.GenerateResource.cache
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.csproj.CoreCompileInputs.cache
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.exe
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.pdb
+C:\Users\Berke\source\repos\BitirmeProjesiArayuzProjesi\BitirmeProjesiArayuzProjesi\obj\Debug\BitirmeProjesiArayuzProjesi.Analyse_page.resources
