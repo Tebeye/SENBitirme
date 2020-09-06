@@ -40,7 +40,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_reset_pressıre = new System.Windows.Forms.Button();
             this.btn_reset_speed = new System.Windows.Forms.Button();
             this.btn_pressure_stop = new System.Windows.Forms.Button();
@@ -49,6 +48,12 @@
             this.btn_speed_start = new System.Windows.Forms.Button();
             this.lbl_arduino_raw_data = new System.Windows.Forms.Label();
             this.timer_arduino = new System.Windows.Forms.Timer(this.components);
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.cbComPort = new System.Windows.Forms.ComboBox();
+            this.cbBaud = new System.Windows.Forms.ComboBox();
+            this.lbl_port = new System.Windows.Forms.Label();
+            this.lbl_baudrate = new System.Windows.Forms.Label();
+            this.btn_connect = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -60,7 +65,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.26627F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.73373F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button2, 2, 1);
@@ -185,8 +190,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.zedGraphControl1);
             this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.btn_reset_pressıre);
             this.groupBox1.Controls.Add(this.btn_reset_speed);
             this.groupBox1.Controls.Add(this.btn_pressure_stop);
@@ -195,7 +200,7 @@
             this.groupBox1.Controls.Add(this.btn_speed_start);
             this.groupBox1.Location = new System.Drawing.Point(143, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(547, 355);
+            this.groupBox1.Size = new System.Drawing.Size(546, 355);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -206,14 +211,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gray;
-            this.panel1.Location = new System.Drawing.Point(342, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 7;
             // 
             // btn_reset_pressıre
             // 
@@ -290,7 +287,7 @@
             // lbl_arduino_raw_data
             // 
             this.lbl_arduino_raw_data.AutoSize = true;
-            this.lbl_arduino_raw_data.Location = new System.Drawing.Point(123, 428);
+            this.lbl_arduino_raw_data.Location = new System.Drawing.Point(600, 428);
             this.lbl_arduino_raw_data.Name = "lbl_arduino_raw_data";
             this.lbl_arduino_raw_data.Size = new System.Drawing.Size(57, 13);
             this.lbl_arduino_raw_data.TabIndex = 1;
@@ -303,16 +300,80 @@
             this.timer_arduino.Interval = 50;
             this.timer_arduino.Tick += new System.EventHandler(this.timer_arduino_Tick);
             // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Location = new System.Drawing.Point(311, 3);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.ScrollGrace = 0D;
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(231, 136);
+            this.zedGraphControl1.TabIndex = 2;
+            this.zedGraphControl1.UseExtendedPrintDialog = true;
+            // 
+            // cbComPort
+            // 
+            this.cbComPort.FormattingEnabled = true;
+            this.cbComPort.Location = new System.Drawing.Point(122, 425);
+            this.cbComPort.Name = "cbComPort";
+            this.cbComPort.Size = new System.Drawing.Size(121, 21);
+            this.cbComPort.TabIndex = 4;
+            // 
+            // cbBaud
+            // 
+            this.cbBaud.FormattingEnabled = true;
+            this.cbBaud.Location = new System.Drawing.Point(327, 425);
+            this.cbBaud.Name = "cbBaud";
+            this.cbBaud.Size = new System.Drawing.Size(121, 21);
+            this.cbBaud.TabIndex = 5;
+            // 
+            // lbl_port
+            // 
+            this.lbl_port.AutoSize = true;
+            this.lbl_port.Location = new System.Drawing.Point(76, 428);
+            this.lbl_port.Name = "lbl_port";
+            this.lbl_port.Size = new System.Drawing.Size(40, 13);
+            this.lbl_port.TabIndex = 6;
+            this.lbl_port.Text = "PORT ";
+            // 
+            // lbl_baudrate
+            // 
+            this.lbl_baudrate.AutoSize = true;
+            this.lbl_baudrate.Location = new System.Drawing.Point(255, 428);
+            this.lbl_baudrate.Name = "lbl_baudrate";
+            this.lbl_baudrate.Size = new System.Drawing.Size(66, 13);
+            this.lbl_baudrate.TabIndex = 8;
+            this.lbl_baudrate.Text = "BAUDRATE";
+            // 
+            // btn_connect
+            // 
+            this.btn_connect.Location = new System.Drawing.Point(472, 423);
+            this.btn_connect.Name = "btn_connect";
+            this.btn_connect.Size = new System.Drawing.Size(75, 23);
+            this.btn_connect.TabIndex = 9;
+            this.btn_connect.Text = "CONNECT";
+            this.btn_connect.UseVisualStyleBackColor = true;
+            // 
             // Analyse_page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_connect);
+            this.Controls.Add(this.lbl_baudrate);
+            this.Controls.Add(this.lbl_port);
+            this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.lbl_arduino_raw_data);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.cbComPort);
             this.MaximizeBox = false;
             this.Name = "Analyse_page";
             this.Text = "Analyse_page";
+            this.Load += new System.EventHandler(this.Analyse_page_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -335,7 +396,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_reset_pressıre;
         private System.Windows.Forms.Button btn_reset_speed;
         private System.Windows.Forms.Button btn_pressure_stop;
@@ -344,5 +404,11 @@
         private System.Windows.Forms.Button btn_speed_start;
         private System.Windows.Forms.Label lbl_arduino_raw_data;
         private System.Windows.Forms.Timer timer_arduino;
+        private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.ComboBox cbComPort;
+        private System.Windows.Forms.ComboBox cbBaud;
+        private System.Windows.Forms.Label lbl_port;
+        private System.Windows.Forms.Label lbl_baudrate;
+        private System.Windows.Forms.Button btn_connect;
     }
 }
