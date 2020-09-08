@@ -34,38 +34,53 @@ namespace BitirmeProjesiArayuzProjesi
         RollingPointPairList listPointsThree = new RollingPointPairList(40);
         LineItem myCurveThree;
 
+        int hataliPaketSayisi = 0;
         int counter = 0;
         static Byte[] cozulen_paket = new Byte[8];
-        SerialPort mySerialPort = new SerialPort("COM4");
+        SerialPort mySerialPort;
         static int gelenveri;
         static char gelen_veri;
         public SerialPort _serialPort;
         public Analyse_page()
+
         {
+
             InitializeComponent();
+            zedGraphControl1.GraphPane.YAxis.Scale.Max = 1023;
+            zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
 
-            mySerialPort.BaudRate = 9600;
-            mySerialPort.Parity = Parity.None;
-            mySerialPort.StopBits = StopBits.One;
-            mySerialPort.DataBits = 8;
-            mySerialPort.Handshake = Handshake.None;
+            try
+            {
+                mySerialPort = new SerialPort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
-            mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-            mySerialPort.Open();
+
         }
 
- 
 
 
-    
-    private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
 
         SerialPort sp = (SerialPort)sender;
-
-            sp.Read(cozulen_paket,0,8);
-
+            try
+            {
+                mySerialPort.Read(cozulen_paket, 0, 8);
+            }
+            catch (Exception ex) {
+                
+                MessageBox.Show( (string)("Please wait..."));
+                return;
+                
+            }
             paketCozme myVar = paketCozme.BirinciDogrulama;
             for(int i = 0; i < cozulen_paket.Length; i++)
             {
@@ -93,8 +108,17 @@ namespace BitirmeProjesiArayuzProjesi
                         }
                         break;
                     case paketCozme.Veriler:
-                        gelenveri = cozulen_paket[i];
-                        gelenveri |= cozulen_paket[i + 1] << 8;
+                        if(i >= 7)
+                        {
+                            hataliPaketSayisi++;
+                        }
+                        else
+                        {
+
+                            gelenveri = cozulen_paket[i];
+                            gelenveri |= cozulen_paket[i + 1] << 8;
+                        }
+
 
                         myVar = paketCozme.BirinciDogrulama;
                         break;
@@ -162,6 +186,52 @@ namespace BitirmeProjesiArayuzProjesi
                 cbBaud.SelectedIndex = 2;
 
             
+        }
+
+        private void btn_connect_Click(object sender, EventArgs e)
+        {
+
+
+            if (mySerialPort.IsOpen == false)
+            {
+                if (cbComPort.Text == "")
+                    return;
+                mySerialPort.PortName = cbComPort.Text;
+                mySerialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
+                try
+                {
+                    mySerialPort.Parity = Parity.None;
+                    mySerialPort.StopBits = StopBits.One;
+                    mySerialPort.DataBits = 8;
+                    mySerialPort.Handshake = Handshake.None;
+                    mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                    mySerialPort.Open();
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Error:" + er.Message);
+                }
+            }
+            else
+            {
+                //rtbEkran.Text = "seriport already open";
+            }
+        }
+
+        private void Analyse_page_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (mySerialPort.IsOpen == true)
+            {
+                mySerialPort.Close();
+            }
+        }
+
+        private void btn_disconnect_Click(object sender, EventArgs e)
+        {
+            if (mySerialPort.IsOpen == true)
+            {
+                mySerialPort.Close();
+            }
         }
     }
 }

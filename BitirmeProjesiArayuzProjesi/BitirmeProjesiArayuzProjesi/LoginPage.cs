@@ -23,6 +23,7 @@ namespace BitirmeProjesiArayuzProjesi
         private void btn_login_Click(object sender, EventArgs e)
         {
             Analyse_page newAnalysePage = new Analyse_page();
+            this.Visible = false;
             newAnalysePage.Visible = true;
         }
     }
