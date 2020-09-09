@@ -40,10 +40,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
-            this.btn_reset_pressıre = new System.Windows.Forms.Button();
             this.btn_reset_speed = new System.Windows.Forms.Button();
-            this.btn_pressure_stop = new System.Windows.Forms.Button();
-            this.btn_pressure_start = new System.Windows.Forms.Button();
             this.btn_speed_stop = new System.Windows.Forms.Button();
             this.btn_speed_start = new System.Windows.Forms.Button();
             this.lbl_arduino_raw_data = new System.Windows.Forms.Label();
@@ -55,7 +52,7 @@
             this.btn_connect = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btn_disconnect = new System.Windows.Forms.Button();
-            this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
+            this.timer_yedekleme = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,7 +64,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.26627F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.73373F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button2, 2, 1);
@@ -89,7 +86,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 90);
+            this.label1.Size = new System.Drawing.Size(208, 90);
             this.label1.TabIndex = 0;
             this.label1.Text = "Wind Tunnel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,23 +189,19 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.zedGraphControl2);
             this.groupBox1.Controls.Add(this.zedGraphControl1);
-            this.groupBox1.Controls.Add(this.btn_reset_pressıre);
             this.groupBox1.Controls.Add(this.btn_reset_speed);
-            this.groupBox1.Controls.Add(this.btn_pressure_stop);
-            this.groupBox1.Controls.Add(this.btn_pressure_start);
             this.groupBox1.Controls.Add(this.btn_speed_stop);
             this.groupBox1.Controls.Add(this.btn_speed_start);
-            this.groupBox1.Location = new System.Drawing.Point(218, 93);
+            this.groupBox1.Location = new System.Drawing.Point(217, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(840, 583);
+            this.groupBox1.Size = new System.Drawing.Size(835, 583);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(358, -7);
+            this.zedGraphControl1.Location = new System.Drawing.Point(249, 0);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
             this.zedGraphControl1.ScrollMaxX = 0D;
@@ -217,81 +210,47 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(482, 288);
+            this.zedGraphControl1.Size = new System.Drawing.Size(589, 441);
             this.zedGraphControl1.TabIndex = 2;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
-            // 
-            // btn_reset_pressıre
-            // 
-            this.btn_reset_pressıre.BackColor = System.Drawing.Color.SteelBlue;
-            this.btn_reset_pressıre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_reset_pressıre.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_reset_pressıre.Location = new System.Drawing.Point(277, 361);
-            this.btn_reset_pressıre.Name = "btn_reset_pressıre";
-            this.btn_reset_pressıre.Size = new System.Drawing.Size(75, 23);
-            this.btn_reset_pressıre.TabIndex = 5;
-            this.btn_reset_pressıre.Text = "RESET";
-            this.btn_reset_pressıre.UseVisualStyleBackColor = false;
             // 
             // btn_reset_speed
             // 
             this.btn_reset_speed.BackColor = System.Drawing.Color.SteelBlue;
             this.btn_reset_speed.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_reset_speed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_reset_speed.Location = new System.Drawing.Point(277, 62);
+            this.btn_reset_speed.Location = new System.Drawing.Point(128, 204);
             this.btn_reset_speed.Name = "btn_reset_speed";
-            this.btn_reset_speed.Size = new System.Drawing.Size(75, 23);
+            this.btn_reset_speed.Size = new System.Drawing.Size(75, 24);
             this.btn_reset_speed.TabIndex = 4;
             this.btn_reset_speed.Text = "RESET";
             this.btn_reset_speed.UseVisualStyleBackColor = false;
-            // 
-            // btn_pressure_stop
-            // 
-            this.btn_pressure_stop.BackColor = System.Drawing.Color.Red;
-            this.btn_pressure_stop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_pressure_stop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_pressure_stop.Location = new System.Drawing.Point(277, 332);
-            this.btn_pressure_stop.Name = "btn_pressure_stop";
-            this.btn_pressure_stop.Size = new System.Drawing.Size(75, 23);
-            this.btn_pressure_stop.TabIndex = 3;
-            this.btn_pressure_stop.Text = "Stop";
-            this.btn_pressure_stop.UseVisualStyleBackColor = false;
-            // 
-            // btn_pressure_start
-            // 
-            this.btn_pressure_start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_pressure_start.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_pressure_start.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_pressure_start.Location = new System.Drawing.Point(277, 303);
-            this.btn_pressure_start.Name = "btn_pressure_start";
-            this.btn_pressure_start.Size = new System.Drawing.Size(75, 23);
-            this.btn_pressure_start.TabIndex = 2;
-            this.btn_pressure_start.Text = "Start";
-            this.btn_pressure_start.UseVisualStyleBackColor = false;
             // 
             // btn_speed_stop
             // 
             this.btn_speed_stop.BackColor = System.Drawing.Color.Red;
             this.btn_speed_stop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_speed_stop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_speed_stop.Location = new System.Drawing.Point(277, 33);
+            this.btn_speed_stop.Location = new System.Drawing.Point(128, 175);
             this.btn_speed_stop.Name = "btn_speed_stop";
-            this.btn_speed_stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_speed_stop.Size = new System.Drawing.Size(75, 24);
             this.btn_speed_stop.TabIndex = 1;
             this.btn_speed_stop.Text = "Stop";
             this.btn_speed_stop.UseVisualStyleBackColor = false;
+            this.btn_speed_stop.Click += new System.EventHandler(this.btn_speed_stop_Click);
             // 
             // btn_speed_start
             // 
             this.btn_speed_start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btn_speed_start.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_speed_start.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_speed_start.Location = new System.Drawing.Point(277, 3);
+            this.btn_speed_start.Location = new System.Drawing.Point(128, 145);
             this.btn_speed_start.Name = "btn_speed_start";
-            this.btn_speed_start.Size = new System.Drawing.Size(75, 23);
+            this.btn_speed_start.Size = new System.Drawing.Size(75, 24);
             this.btn_speed_start.TabIndex = 0;
             this.btn_speed_start.Text = "Start";
             this.btn_speed_start.UseVisualStyleBackColor = false;
+            this.btn_speed_start.Click += new System.EventHandler(this.btn_speed_start_Click);
             // 
             // lbl_arduino_raw_data
             // 
@@ -363,20 +322,10 @@
             this.btn_disconnect.UseVisualStyleBackColor = true;
             this.btn_disconnect.Click += new System.EventHandler(this.btn_disconnect_Click);
             // 
-            // zedGraphControl2
+            // timer_yedekleme
             // 
-            this.zedGraphControl2.Location = new System.Drawing.Point(358, 288);
-            this.zedGraphControl2.Name = "zedGraphControl2";
-            this.zedGraphControl2.ScrollGrace = 0D;
-            this.zedGraphControl2.ScrollMaxX = 0D;
-            this.zedGraphControl2.ScrollMaxY = 0D;
-            this.zedGraphControl2.ScrollMaxY2 = 0D;
-            this.zedGraphControl2.ScrollMinX = 0D;
-            this.zedGraphControl2.ScrollMinY = 0D;
-            this.zedGraphControl2.ScrollMinY2 = 0D;
-            this.zedGraphControl2.Size = new System.Drawing.Size(482, 289);
-            this.zedGraphControl2.TabIndex = 6;
-            this.zedGraphControl2.UseExtendedPrintDialog = true;
+            this.timer_yedekleme.Enabled = true;
+            this.timer_yedekleme.Tick += new System.EventHandler(this.timer_yedekleme_Tick);
             // 
             // Analyse_page
             // 
@@ -417,10 +366,7 @@
         private System.Windows.Forms.Button btn_current_test;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_reset_pressıre;
         private System.Windows.Forms.Button btn_reset_speed;
-        private System.Windows.Forms.Button btn_pressure_stop;
-        private System.Windows.Forms.Button btn_pressure_start;
         private System.Windows.Forms.Button btn_speed_stop;
         private System.Windows.Forms.Button btn_speed_start;
         private System.Windows.Forms.Label lbl_arduino_raw_data;
@@ -431,8 +377,8 @@
         private System.Windows.Forms.Label lbl_port;
         private System.Windows.Forms.Label lbl_baudrate;
         private System.Windows.Forms.Button btn_connect;
-        private ZedGraph.ZedGraphControl zedGraphControl2;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btn_disconnect;
+        private System.Windows.Forms.Timer timer_yedekleme;
     }
 }

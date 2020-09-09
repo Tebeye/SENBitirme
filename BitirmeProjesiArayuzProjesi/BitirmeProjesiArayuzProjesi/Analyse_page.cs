@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 enum paketCozme
 {
@@ -22,7 +24,8 @@ namespace BitirmeProjesiArayuzProjesi
 {
     public partial class Analyse_page : Form
     {
-
+        string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
+        int testId = 0;
         string Gelen = string.Empty;
         string[] ports = SerialPort.GetPortNames();
         // 1
@@ -46,7 +49,7 @@ namespace BitirmeProjesiArayuzProjesi
         {
 
             InitializeComponent();
-            zedGraphControl1.GraphPane.YAxis.Scale.Max = 1023;
+            zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
 
             try
@@ -70,19 +73,20 @@ namespace BitirmeProjesiArayuzProjesi
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
 
-        SerialPort sp = (SerialPort)sender;
+            SerialPort sp = (SerialPort)sender;
             try
             {
                 mySerialPort.Read(cozulen_paket, 0, 8);
             }
-            catch (Exception ex) {
-                
-                MessageBox.Show( (string)("Please wait..."));
+            catch (Exception ex)
+            {
+
+                MessageBox.Show((string)("Please wait..."));
                 return;
-                
+
             }
             paketCozme myVar = paketCozme.BirinciDogrulama;
-            for(int i = 0; i < cozulen_paket.Length; i++)
+            for (int i = 0; i < cozulen_paket.Length; i++)
             {
                 switch (myVar)
                 {
@@ -108,15 +112,15 @@ namespace BitirmeProjesiArayuzProjesi
                         }
                         break;
                     case paketCozme.Veriler:
-                        if(i >= 7)
+                        if (i >= 7)
                         {
                             hataliPaketSayisi++;
                         }
                         else
                         {
-
                             gelenveri = cozulen_paket[i];
-                            gelenveri |= cozulen_paket[i + 1] << 8;
+
+                            // gelenveri = cozulen_paket[i];
                         }
 
 
@@ -137,6 +141,21 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void timer_arduino_Tick(object sender, EventArgs e)
         {
+            MySqlConnection connection = new MySqlConnection(MyConnection2);
+            connection.Open();
+            MySqlCommand dataCmd = new MySqlCommand();
+            dataCmd.Connection = connection;
+            dataCmd.CommandText = "INSERT INTO data(velocity,tests_test_id) VALUES(@velocity,@test_test_id)";  //"UPDATE users SET username=@username WHERE user_id=@id";                 //"INSERT INTO users(username, password) VALUES(@username, @password)";         //"delete from users";                //"INSERT INTO users(username,password) VALUES(@username,@password)";
+            dataCmd.Prepare();
+            dataCmd.Parameters.AddWithValue("@velocity", gelenveri);
+            dataCmd.Parameters.AddWithValue("@test_test_id", 1);
+            dataCmd.ExecuteNonQuery();
+            connection.Close();
+
+
+
+
+
             labelGuncelleme();
             counter++;
             double x = Convert.ToDouble(counter);
@@ -150,42 +169,42 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void lbl_arduino_raw_data_Click(object sender, EventArgs e)
         {
-           
+
         }
         private void labelGuncelleme()
         {
-            lbl_arduino_raw_data.Text =   "X koordinati : " + gelenveri.ToString() ;
+            lbl_arduino_raw_data.Text = "X koordinati : " + gelenveri.ToString();
         }
 
         private void Analyse_page_Load(object sender, EventArgs e)
         {
-            
-                //1
-                myPane = zedGraphControl1.GraphPane;
 
-                myPane.XAxis.Title.Text = "Time";
-                myPane.YAxis.Title.Text = "Data";
-                zedGraphControl1.Invalidate();
-                zedGraphControl1.AxisChange();
-                zedGraphControl1.Refresh();
-            
+            //1
+            myPane = zedGraphControl1.GraphPane;
 
-                /* Adding connected ports */
-                foreach (string port in ports)
-                {
-                    cbComPort.Items.Add(port);
-                }
-                /* Baudrates are added */
-                cbBaud.Items.Add("2400");
-                cbBaud.Items.Add("4800");
-                cbBaud.Items.Add("9600");
-                cbBaud.Items.Add("19200");
-                cbBaud.Items.Add("38400");
-                cbBaud.Items.Add("57600");
-                cbBaud.Items.Add("115200");
-                cbBaud.SelectedIndex = 2;
+            myPane.XAxis.Title.Text = "Time";
+            myPane.YAxis.Title.Text = "Data";
+            zedGraphControl1.Invalidate();
+            zedGraphControl1.AxisChange();
+            zedGraphControl1.Refresh();
 
-            
+
+            /* Adding connected ports */
+            foreach (string port in ports)
+            {
+                cbComPort.Items.Add(port);
+            }
+            /* Baudrates are added */
+            cbBaud.Items.Add("2400");
+            cbBaud.Items.Add("4800");
+            cbBaud.Items.Add("9600");
+            cbBaud.Items.Add("19200");
+            cbBaud.Items.Add("38400");
+            cbBaud.Items.Add("57600");
+            cbBaud.Items.Add("115200");
+            cbBaud.SelectedIndex = 2;
+
+
         }
 
         private void btn_connect_Click(object sender, EventArgs e)
@@ -231,6 +250,71 @@ namespace BitirmeProjesiArayuzProjesi
             if (mySerialPort.IsOpen == true)
             {
                 mySerialPort.Close();
+            }
+        }
+
+        private void timer_yedekleme_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_speed_start_Click(object sender, EventArgs e)
+        {
+             MySqlConnection connection = new MySqlConnection(MyConnection2);
+
+            try
+            {
+               
+                connection.Open();
+                MySqlCommand testCmd = new MySqlCommand();
+                testCmd.Connection = connection;
+                testCmd.CommandText = "INSERT INTO tests( start_time, test_status) VALUES(@start_time,@test_status)";
+                testCmd.Prepare();
+                //   testCmd.Parameters.AddWithValue("@test_id", testId);
+                testCmd.Parameters.AddWithValue("@start_time", DateTime.Now);
+                testCmd.Parameters.AddWithValue("@test_status", 1);
+                testCmd.ExecuteNonQuery();
+                testId = (int)testCmd.LastInsertedId;    //Eklenen son ID'Li şey
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+            
+        }
+
+        private void btn_speed_stop_Click(object sender, EventArgs e)
+        {
+            MySqlConnection connection = new MySqlConnection(MyConnection2);
+
+            try
+            {
+                connection.Open();
+                MySqlCommand testCmd = new MySqlCommand();
+                testCmd.Connection = connection;
+                testCmd.CommandText = "UPDATE tests SET test_status=@status, end_time=@end_time WHERE test_status=1";
+                testCmd.Prepare();
+                testCmd.Parameters.AddWithValue("@status", 0);
+                testCmd.Parameters.AddWithValue("@end_time", DateTime.Now);
+                testCmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
             }
         }
     }
