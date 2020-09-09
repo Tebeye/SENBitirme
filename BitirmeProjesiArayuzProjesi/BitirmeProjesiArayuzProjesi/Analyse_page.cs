@@ -47,13 +47,14 @@ namespace BitirmeProjesiArayuzProjesi
         static char gelen_veri;
         public SerialPort _serialPort;
         public Analyse_page()
-
         {
-
+          
+   
             InitializeComponent();
+            timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
-
+   
             try
             {
                 mySerialPort = new SerialPort();
@@ -72,7 +73,7 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-
+            
             SerialPort sp = (SerialPort)sender;
             try
             {
@@ -282,6 +283,8 @@ namespace BitirmeProjesiArayuzProjesi
                 testCmd.ExecuteNonQuery();
                 testId = (int)testCmd.LastInsertedId;    //Eklenen son ID'Li şey
                 connection.Close();
+                timer_arduino.Enabled = true;
+                //timer_arduino.Start();
             }
             catch (Exception ex)
             {
@@ -303,6 +306,8 @@ namespace BitirmeProjesiArayuzProjesi
 
             try
             {
+                //timer_arduino.Stop();
+                timer_arduino.Enabled = false;
                 connection.Open();
                 MySqlCommand testCmd = new MySqlCommand();
                 testCmd.Connection = connection;
