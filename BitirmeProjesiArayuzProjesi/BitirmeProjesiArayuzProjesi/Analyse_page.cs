@@ -22,8 +22,10 @@ enum paketCozme
 
 namespace BitirmeProjesiArayuzProjesi
 {
+    
     public partial class Analyse_page : Form
     {
+        
         string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
         int testId = 0;
         string Gelen = string.Empty;
@@ -137,17 +139,31 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void timer_arduino_Tick(object sender, EventArgs e)
         {
-            MySqlConnection connection = new MySqlConnection(MyConnection2);
-            connection.Open();
-            MySqlCommand dataCmd = new MySqlCommand();
-            dataCmd.Connection = connection;
-            dataCmd.CommandText = "INSERT INTO data(velocity,tests_test_id) VALUES(@velocity,@test_test_id)";  //"UPDATE users SET username=@username WHERE user_id=@id";                 //"INSERT INTO users(username, password) VALUES(@username, @password)";         //"delete from users";                //"INSERT INTO users(username,password) VALUES(@username,@password)";
-            dataCmd.Prepare();
-            dataCmd.Parameters.AddWithValue("@velocity", gelenveri);
-            dataCmd.Parameters.AddWithValue("@test_test_id", 1);
-            dataCmd.ExecuteNonQuery();
-            connection.Close();         
+            
+            try
+            {
+               MySqlConnection connection = new MySqlConnection(MyConnection2);
+                connection.Open();            
+                //Add incoming datas to database_data.
+                MySqlCommand dataCmd = new MySqlCommand();
+                dataCmd.Connection = connection;
+                dataCmd.CommandText = "INSERT INTO data(velocity,tests_test_id) VALUES(@velocity,@test_test_id)";
+                dataCmd.Prepare();
+                dataCmd.Parameters.AddWithValue("@velocity", gelenveri);
+                dataCmd.Parameters.AddWithValue("@test_test_id", testId);
+                dataCmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
+            
+
+
+          
+            
             labelGuncelleme();
             counter++;
             double x = Convert.ToDouble(counter);
@@ -247,7 +263,10 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_speed_start_Click(object sender, EventArgs e)
         {
+            
              MySqlConnection connection = new MySqlConnection(MyConnection2);
+           
+       
 
             try
             {
@@ -304,5 +323,6 @@ namespace BitirmeProjesiArayuzProjesi
                     connection.Close();
             }
         }
+
     }
 }
