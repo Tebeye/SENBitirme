@@ -62,8 +62,6 @@ namespace BitirmeProjesiArayuzProjesi
                 return;
             }
 
-
-
         }
 
 
@@ -122,8 +120,6 @@ namespace BitirmeProjesiArayuzProjesi
 
                             // gelenveri = cozulen_paket[i];
                         }
-
-
                         myVar = paketCozme.BirinciDogrulama;
                         break;
                 }
@@ -150,11 +146,7 @@ namespace BitirmeProjesiArayuzProjesi
             dataCmd.Parameters.AddWithValue("@velocity", gelenveri);
             dataCmd.Parameters.AddWithValue("@test_test_id", 1);
             dataCmd.ExecuteNonQuery();
-            connection.Close();
-
-
-
-
+            connection.Close();         
 
             labelGuncelleme();
             counter++;
@@ -178,7 +170,6 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void Analyse_page_Load(object sender, EventArgs e)
         {
-
             //1
             myPane = zedGraphControl1.GraphPane;
 
@@ -203,14 +194,10 @@ namespace BitirmeProjesiArayuzProjesi
             cbBaud.Items.Add("57600");
             cbBaud.Items.Add("115200");
             cbBaud.SelectedIndex = 2;
-
-
         }
 
         private void btn_connect_Click(object sender, EventArgs e)
         {
-
-
             if (mySerialPort.IsOpen == false)
             {
                 if (cbComPort.Text == "")
