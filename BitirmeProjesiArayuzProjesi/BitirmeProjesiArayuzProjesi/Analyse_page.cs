@@ -49,6 +49,7 @@ namespace BitirmeProjesiArayuzProjesi
         static int gelenveri;
         static char gelen_veri;
         public SerialPort _serialPort;
+        
         public Analyse_page()
         {
 
@@ -62,7 +63,9 @@ namespace BitirmeProjesiArayuzProjesi
 
             changePanel(panel_current_test);
             panel_test_history.Location = panel_current_test.Location;
+            panel_settings.Location = panel_current_test.Location;
             return_click.Visible = false;
+            comboBox_change_language.SelectedIndex = 0;
             
             try
             {
@@ -81,11 +84,12 @@ namespace BitirmeProjesiArayuzProjesi
         {
             panel_test_history.Visible = false;
             panel_current_test.Visible = false;
+            panel_settings.Visible = false;
             panel.Visible = true;
           
         }
         //Language
-        int language=1;
+       
         private void ChangeLanguage(int lan)
         {
             if (lan==0)
@@ -100,7 +104,8 @@ namespace BitirmeProjesiArayuzProjesi
                 btn_reset_speed.Text = "RESET";
                 btn_connect.Text = "Connect";
                 btn_disconnect.Text = "Disconnect";
-                language = 1;
+                labelChangeLanguage.Text = "Change Language";
+                btn_apply.Text = "Apply";
             }
             else if (lan==1)
             {
@@ -114,8 +119,8 @@ namespace BitirmeProjesiArayuzProjesi
                 btn_reset_speed.Text = "Yenile";
                 btn_connect.Text = "Bağlan";
                 btn_disconnect.Text = "Bağlantıyı kes";
-                language = 0;
-
+                labelChangeLanguage.Text = "Dil Değişikliği:";
+                btn_apply.Text = "Uygula";
             }
             else
             {
@@ -498,7 +503,12 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_changeLanguage_Click(object sender, EventArgs e)
         {
-            ChangeLanguage(language);
+            ChangeLanguage(comboBox_change_language.SelectedIndex);
+        }
+
+        private void btn_settings_Click(object sender, EventArgs e)
+        {
+            changePanel(panel_settings);
         }
     }
 }
