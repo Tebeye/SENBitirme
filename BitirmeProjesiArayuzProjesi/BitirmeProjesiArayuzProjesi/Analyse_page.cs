@@ -53,7 +53,7 @@ namespace BitirmeProjesiArayuzProjesi
           
    
             InitializeComponent();
-            Size = new Size(950, 600);
+            Size = new Size(950, 550);
             timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;

@@ -73,7 +73,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(355, 30);
+            this.label1.Location = new System.Drawing.Point(349, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(210, 39);
             this.label1.TabIndex = 0;
@@ -138,7 +138,7 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(726, 297);
+            this.zedGraphControl1.Size = new System.Drawing.Size(738, 297);
             this.zedGraphControl1.TabIndex = 2;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             // 
@@ -147,7 +147,7 @@
             this.btn_reset_speed.BackColor = System.Drawing.Color.SteelBlue;
             this.btn_reset_speed.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_reset_speed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_reset_speed.Location = new System.Drawing.Point(582, 307);
+            this.btn_reset_speed.Location = new System.Drawing.Point(594, 307);
             this.btn_reset_speed.Name = "btn_reset_speed";
             this.btn_reset_speed.Size = new System.Drawing.Size(147, 45);
             this.btn_reset_speed.TabIndex = 4;
@@ -159,7 +159,7 @@
             this.btn_speed_stop.BackColor = System.Drawing.Color.Red;
             this.btn_speed_stop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_speed_stop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_speed_stop.Location = new System.Drawing.Point(429, 307);
+            this.btn_speed_stop.Location = new System.Drawing.Point(441, 307);
             this.btn_speed_stop.Name = "btn_speed_stop";
             this.btn_speed_stop.Size = new System.Drawing.Size(147, 45);
             this.btn_speed_stop.TabIndex = 1;
@@ -172,7 +172,7 @@
             this.btn_speed_start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btn_speed_start.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_speed_start.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_speed_start.Location = new System.Drawing.Point(276, 307);
+            this.btn_speed_start.Location = new System.Drawing.Point(288, 307);
             this.btn_speed_start.Name = "btn_speed_start";
             this.btn_speed_start.Size = new System.Drawing.Size(147, 45);
             this.btn_speed_start.TabIndex = 0;
@@ -186,7 +186,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(826, 77);
+            this.button2.Location = new System.Drawing.Point(823, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -275,7 +275,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Location = new System.Drawing.Point(12, 21);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(901, 100);
+            this.panel1.Size = new System.Drawing.Size(901, 45);
             this.panel1.TabIndex = 11;
             // 
             // panel2
@@ -285,7 +285,7 @@
             this.panel2.Controls.Add(this.btn_test_history);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Location = new System.Drawing.Point(13, 128);
+            this.panel2.Location = new System.Drawing.Point(12, 82);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(151, 362);
             this.panel2.TabIndex = 12;
@@ -296,7 +296,7 @@
             this.panel_current_test.Controls.Add(this.btn_reset_speed);
             this.panel_current_test.Controls.Add(this.btn_speed_start);
             this.panel_current_test.Controls.Add(this.btn_speed_stop);
-            this.panel_current_test.Location = new System.Drawing.Point(169, 127);
+            this.panel_current_test.Location = new System.Drawing.Point(168, 81);
             this.panel_current_test.Name = "panel_current_test";
             this.panel_current_test.Size = new System.Drawing.Size(744, 363);
             this.panel_current_test.TabIndex = 13;
@@ -310,7 +310,7 @@
             this.panel4.Controls.Add(this.btn_disconnect);
             this.panel4.Controls.Add(this.lbl_baudrate);
             this.panel4.Controls.Add(this.btn_connect);
-            this.panel4.Location = new System.Drawing.Point(13, 496);
+            this.panel4.Location = new System.Drawing.Point(12, 450);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(900, 48);
             this.panel4.TabIndex = 14;
@@ -331,7 +331,7 @@
             // 
             this.panel_test_history.Controls.Add(this.return_click);
             this.panel_test_history.Controls.Add(this.dataGridView_test_history);
-            this.panel_test_history.Location = new System.Drawing.Point(931, 118);
+            this.panel_test_history.Location = new System.Drawing.Point(933, 81);
             this.panel_test_history.Name = "panel_test_history";
             this.panel_test_history.Size = new System.Drawing.Size(744, 363);
             this.panel_test_history.TabIndex = 14;
@@ -351,7 +351,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1757, 608);
+            this.ClientSize = new System.Drawing.Size(1757, 511);
             this.Controls.Add(this.panel_test_history);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel_current_test);
