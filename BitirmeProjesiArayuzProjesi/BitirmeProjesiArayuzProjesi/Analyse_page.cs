@@ -44,19 +44,22 @@ namespace BitirmeProjesiArayuzProjesi
         int hataliPaketSayisi = 0;
         int counter = 0;
         static Byte[] cozulen_paket = new Byte[8];
+        byte data_recived;
         SerialPort mySerialPort;
         static int gelenveri;
         static char gelen_veri;
         public SerialPort _serialPort;
         public Analyse_page()
         {
-          
-   
+
             InitializeComponent();
             Size = new Size(950, 550);
             timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
+            zedGraphControl1.GraphPane.XAxis.Scale.Max = 120;
+
+
             changePanel(panel_current_test);
             panel_test_history.Location = panel_current_test.Location;
             return_click.Visible = false;
@@ -81,15 +84,57 @@ namespace BitirmeProjesiArayuzProjesi
             panel.Visible = true;
           
         }
+        //Language
+        int language=1;
+        private void ChangeLanguage(int lan)
+        {
+            if (lan==0)
+            {
+                label1.Text = "Wind Tunnel";
+                btn_current_test.Text = "Current Test";
+                btn_test_history.Text = "Test History";
+                btn_settings.Text = "Settings";
+                btn_closeApplication.Text = "Close Application";
+                btn_speed_start.Text = "Start";
+                btn_speed_stop.Text = "Stop";
+                btn_reset_speed.Text = "RESET";
+                btn_connect.Text = "Connect";
+                btn_disconnect.Text = "Disconnect";
+                language = 1;
+            }
+            else if (lan==1)
+            {
+                label1.Text = "Rüzgar Tüneli";
+                btn_current_test.Text = "Anlık Test";
+                btn_test_history.Text = "Test Geçmişi";
+                btn_settings.Text = "Ayarlar";
+                btn_closeApplication.Text = "Ugulamayı kapat";
+                btn_speed_start.Text = "Başlat";
+                btn_speed_stop.Text = "Durdur";
+                btn_reset_speed.Text = "Yenile";
+                btn_connect.Text = "Bağlan";
+                btn_disconnect.Text = "Bağlantıyı kes";
+                language = 0;
+
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
+
+
 
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            
+
             SerialPort sp = (SerialPort)sender;
             try
             {
-                mySerialPort.Read(cozulen_paket, 0, 1);
+                mySerialPort.Read(cozulen_paket,0,1);
             }
             catch (Exception ex)
             {
@@ -98,7 +143,8 @@ namespace BitirmeProjesiArayuzProjesi
                 return;
 
             }
-
+            gelenveri = cozulen_paket[0];
+            
             /*paketCozme myVar = paketCozme.BirinciDogrulama;
             for (int i = 0; i < cozulen_paket.Length; i++)
             {
@@ -131,9 +177,6 @@ namespace BitirmeProjesiArayuzProjesi
                     myVar = paketCozme.BirinciDogrulama;
                 }
             }*/
-            gelenveri = cozulen_paket[0];
-
-
 
 
         }
@@ -147,6 +190,8 @@ namespace BitirmeProjesiArayuzProjesi
         private void timer_arduino_Tick(object sender, EventArgs e)
         {
             
+
+
             try
             {
                MySqlConnection connection = new MySqlConnection(MyConnection2);
@@ -166,11 +211,7 @@ namespace BitirmeProjesiArayuzProjesi
 
                 MessageBox.Show(ex.Message);
             }
-            
 
-
-          
-            
             labelGuncelleme();
             counter++;
             double x = Convert.ToDouble(counter);
@@ -455,6 +496,9 @@ namespace BitirmeProjesiArayuzProjesi
             dataGridView_clickable = true;
         }
 
-      
+        private void btn_changeLanguage_Click(object sender, EventArgs e)
+        {
+            ChangeLanguage(language);
+        }
     }
 }

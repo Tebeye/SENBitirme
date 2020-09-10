@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_closeApplication = new System.Windows.Forms.Button();
+            this.btn_settings = new System.Windows.Forms.Button();
             this.btn_test_history = new System.Windows.Forms.Button();
             this.btn_volt_amper = new System.Windows.Forms.Button();
             this.btn_current_test = new System.Windows.Forms.Button();
@@ -39,7 +39,7 @@
             this.btn_reset_speed = new System.Windows.Forms.Button();
             this.btn_speed_stop = new System.Windows.Forms.Button();
             this.btn_speed_start = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_changeLanguage = new System.Windows.Forms.Button();
             this.lbl_arduino_raw_data = new System.Windows.Forms.Label();
             this.timer_arduino = new System.Windows.Forms.Timer(this.components);
             this.cbComPort = new System.Windows.Forms.ComboBox();
@@ -81,23 +81,23 @@
             this.label1.Text = "Wind Tunnel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button5
+            // btn_closeApplication
             // 
-            this.button5.Location = new System.Drawing.Point(3, 147);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(145, 30);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Close Application";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn_closeApplication.Location = new System.Drawing.Point(3, 147);
+            this.btn_closeApplication.Name = "btn_closeApplication";
+            this.btn_closeApplication.Size = new System.Drawing.Size(145, 30);
+            this.btn_closeApplication.TabIndex = 4;
+            this.btn_closeApplication.Text = "Close Application";
+            this.btn_closeApplication.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btn_settings
             // 
-            this.button4.Location = new System.Drawing.Point(3, 111);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(145, 30);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Settings";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_settings.Location = new System.Drawing.Point(3, 111);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(145, 30);
+            this.btn_settings.TabIndex = 3;
+            this.btn_settings.Text = "Settings";
+            this.btn_settings.UseVisualStyleBackColor = true;
             // 
             // btn_test_history
             // 
@@ -182,18 +182,19 @@
             this.btn_speed_start.UseVisualStyleBackColor = false;
             this.btn_speed_start.Click += new System.EventHandler(this.btn_speed_start_Click);
             // 
-            // button2
+            // btn_changeLanguage
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(823, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "TR / EN";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_changeLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_changeLanguage.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_changeLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_changeLanguage.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_changeLanguage.Location = new System.Drawing.Point(823, 19);
+            this.btn_changeLanguage.Name = "btn_changeLanguage";
+            this.btn_changeLanguage.Size = new System.Drawing.Size(75, 23);
+            this.btn_changeLanguage.TabIndex = 2;
+            this.btn_changeLanguage.Text = "TR / EN";
+            this.btn_changeLanguage.UseVisualStyleBackColor = false;
+            this.btn_changeLanguage.Click += new System.EventHandler(this.btn_changeLanguage_Click);
             // 
             // lbl_arduino_raw_data
             // 
@@ -274,7 +275,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btn_changeLanguage);
             this.panel1.Location = new System.Drawing.Point(12, 21);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(901, 45);
@@ -285,8 +286,8 @@
             this.panel2.Controls.Add(this.btn_current_test);
             this.panel2.Controls.Add(this.btn_volt_amper);
             this.panel2.Controls.Add(this.btn_test_history);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.btn_settings);
+            this.panel2.Controls.Add(this.btn_closeApplication);
             this.panel2.Location = new System.Drawing.Point(12, 82);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(151, 362);
@@ -389,12 +390,12 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_closeApplication;
+        private System.Windows.Forms.Button btn_settings;
         private System.Windows.Forms.Button btn_test_history;
         private System.Windows.Forms.Button btn_volt_amper;
         private System.Windows.Forms.Button btn_current_test;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_changeLanguage;
         private System.Windows.Forms.Button btn_reset_speed;
         private System.Windows.Forms.Button btn_speed_stop;
         private System.Windows.Forms.Button btn_speed_start;
