@@ -53,11 +53,13 @@ namespace BitirmeProjesiArayuzProjesi
           
    
             InitializeComponent();
+            Size = new Size(950, 600);
             timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
-            dataGridView_test_history.Visible = false;
-
+            changePanel(panel_current_test);
+            panel_test_history.Location = panel_current_test.Location;
+            return_click.Visible = false;
 
             try
             {
@@ -72,7 +74,13 @@ namespace BitirmeProjesiArayuzProjesi
         }
 
 
-
+        private void changePanel(Panel panel)
+        {
+            panel_test_history.Visible = false;
+            panel_current_test.Visible = false;
+            panel.Visible = true;
+          
+        }
 
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -367,23 +375,13 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_current_test_Click(object sender, EventArgs e)
         {
-            zedGraphControl1.Visible = true;
-            btn_speed_start.Visible = true;
-            btn_speed_stop.Visible = true;
-            btn_reset_speed.Visible = true;
-            dataGridView_test_history.Visible = false;
+            changePanel(panel_current_test);
 
         }
 
         private void btn_test_history_Click(object sender, EventArgs e)
         {
-            dataGridView_clickable = true;
-            zedGraphControl1.Visible = false;
-            btn_speed_start.Visible = false;
-            btn_speed_stop.Visible = false;
-            btn_reset_speed.Visible = false;
-            dataGridView_test_history.Visible = true;
-
+            changePanel(panel_test_history);
 
             MySqlConnection connection = new MySqlConnection(MyConnection2);
 
@@ -410,8 +408,8 @@ namespace BitirmeProjesiArayuzProjesi
 
                 throw;
             }
-
-
+            dataGridView_clickable = true;
+            return_click.Visible = false;
 
 
 
@@ -456,8 +454,42 @@ namespace BitirmeProjesiArayuzProjesi
 
                 throw;
             }
+            return_click.Visible = true;
         }
 
-     
+
+
+        private void return_Click_event(object sender, EventArgs e)
+        {
+
+
+            MySqlConnection connection = new MySqlConnection(MyConnection2);
+
+            try
+            {
+                connection.Open();
+                string stm = "SELECT test_id, start_time, end_time FROM tests Where test_status=0";
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                dataAdapter.SelectCommand = new MySqlCommand(stm, connection);
+                DataSet table = new DataSet();
+                dataAdapter.Fill(table, "tests");
+
+
+                dataGridView_test_history.DataSource = table.Tables["tests"];
+                dataGridView_test_history.Columns[1].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                dataGridView_test_history.Columns[2].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                dataGridView_test_history.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                throw;
+            }
+            return_click.Visible = false;
+            dataGridView_clickable = true;
+        }
     }
 }
