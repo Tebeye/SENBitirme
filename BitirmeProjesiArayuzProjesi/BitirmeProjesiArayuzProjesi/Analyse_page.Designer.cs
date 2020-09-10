@@ -215,7 +215,7 @@
             // timer_arduino
             // 
             this.timer_arduino.Enabled = true;
-            this.timer_arduino.Interval = 500;
+            this.timer_arduino.Interval = 250;
             this.timer_arduino.Tick += new System.EventHandler(this.timer_arduino_Tick);
             // 
             // cbComPort

@@ -36,12 +36,14 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_adminPage = new System.Windows.Forms.Button();
             this.pnl_login.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_login
             // 
             this.pnl_login.BackColor = System.Drawing.Color.LightBlue;
+            this.pnl_login.Controls.Add(this.btn_adminPage);
             this.pnl_login.Controls.Add(this.lbl_guest);
             this.pnl_login.Controls.Add(this.btn_login);
             this.pnl_login.Controls.Add(this.textBox3);
@@ -107,6 +109,20 @@ namespace BitirmeProjesiArayuzProjesi
             this.label2.Text = "Wind Tunnel";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_adminPage
+            // 
+            this.btn_adminPage.BackColor = System.Drawing.Color.DarkRed;
+            this.btn_adminPage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_adminPage.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btn_adminPage.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_adminPage.Location = new System.Drawing.Point(12, 280);
+            this.btn_adminPage.Name = "btn_adminPage";
+            this.btn_adminPage.Size = new System.Drawing.Size(73, 21);
+            this.btn_adminPage.TabIndex = 11;
+            this.btn_adminPage.Text = "Admin Page";
+            this.btn_adminPage.UseVisualStyleBackColor = false;
+            this.btn_adminPage.Click += new System.EventHandler(this.btn_adminPage_Click);
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +149,7 @@ namespace BitirmeProjesiArayuzProjesi
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Label lbl_guest;
+        private System.Windows.Forms.Button btn_adminPage;
     }
 }
 

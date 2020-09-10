@@ -52,5 +52,13 @@ namespace BitirmeProjesiArayuzProjesi
                 newAnalysePage.Visible = true;
             }
         }
+
+        private void btn_adminPage_Click(object sender, EventArgs e)
+        {
+            
+            AdminPage newAdminPage = new AdminPage();
+            this.Visible = false;
+            newAdminPage.Visible = true;
+        }
     }
 }

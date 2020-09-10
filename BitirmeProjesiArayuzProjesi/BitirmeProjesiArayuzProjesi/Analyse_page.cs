@@ -59,7 +59,7 @@ namespace BitirmeProjesiArayuzProjesi
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
             zedGraphControl1.GraphPane.XAxis.Scale.Max = 120;
-
+           
 
             changePanel(panel_current_test);
             panel_test_history.Location = panel_current_test.Location;
@@ -243,7 +243,7 @@ namespace BitirmeProjesiArayuzProjesi
             myPane = zedGraphControl1.GraphPane;
 
             myPane.XAxis.Title.Text = "Time";
-            myPane.YAxis.Title.Text = "Data";
+            myPane.YAxis.Title.Text = "Velocity";
             zedGraphControl1.Invalidate();
             zedGraphControl1.AxisChange();
             zedGraphControl1.Refresh();
