@@ -39,6 +39,7 @@ namespace BitirmeProjesiArayuzProjesi
         RollingPointPairList listPointsThree = new RollingPointPairList(40);
         LineItem myCurveThree;
 
+        int old_test_id;
         int hataliPaketSayisi = 0;
         int counter = 0;
         static Byte[] cozulen_paket = new Byte[8];
@@ -54,7 +55,10 @@ namespace BitirmeProjesiArayuzProjesi
             timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
-   
+            dataGridView_test_history.Visible = false;
+            
+
+
             try
             {
                 mySerialPort = new SerialPort();
@@ -89,7 +93,38 @@ namespace BitirmeProjesiArayuzProjesi
             paketCozme myVar = paketCozme.BirinciDogrulama;
             for (int i = 0; i < cozulen_paket.Length; i++)
             {
-                switch (myVar)
+
+
+                if (myVar == paketCozme.Veriler)
+                {
+                    if (i >= 7)
+                    {
+                        hataliPaketSayisi++;
+                    }
+                    else
+                    {
+                        gelenveri = cozulen_paket[i];
+                    }
+                    myVar = paketCozme.BirinciDogrulama;
+                    continue;
+                }
+
+                if (myVar == paketCozme.BirinciDogrulama && cozulen_paket[i] == 0xAB)
+                {
+                    myVar = paketCozme.İkinciDogrulama;
+                }
+                else if (myVar == paketCozme.İkinciDogrulama && cozulen_paket[i] == 0xFD)
+                {
+                    myVar = paketCozme.Veriler;
+                }
+                else
+                {
+                    myVar = paketCozme.BirinciDogrulama;
+                }
+
+
+
+                /*switch (myVar)
                 {
                     case paketCozme.BirinciDogrulama:
                         if (cozulen_paket[i] == 0xAB)
@@ -125,7 +160,7 @@ namespace BitirmeProjesiArayuzProjesi
                         }
                         myVar = paketCozme.BirinciDogrulama;
                         break;
-                }
+                }*/
             }
 
 
@@ -329,5 +364,90 @@ namespace BitirmeProjesiArayuzProjesi
             }
         }
 
+
+        private void btn_current_test_Click(object sender, EventArgs e)
+        {
+            zedGraphControl1.Visible = true;
+            btn_speed_start.Visible = true;
+            btn_speed_stop.Visible = true;
+            btn_reset_speed.Visible = true;
+            dataGridView_test_history.Visible = false;
+
+        }
+
+        private void btn_test_history_Click(object sender, EventArgs e)
+        {
+
+            zedGraphControl1.Visible = false;
+            btn_speed_start.Visible = false;
+            btn_speed_stop.Visible = false;
+            btn_reset_speed.Visible = false;
+            dataGridView_test_history.Visible = true;
+
+
+            MySqlConnection connection = new MySqlConnection(MyConnection2);
+
+            try
+            {
+                connection.Open();
+                string stm = "SELECT test_id, start_time, end_time FROM tests Where test_status=0";
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                dataAdapter.SelectCommand = new MySqlCommand(stm, connection);
+                DataSet table = new DataSet();
+                dataAdapter.Fill(table, "tests");
+
+
+                dataGridView_test_history.DataSource = table.Tables["tests"];
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                throw;
+            }
+
+
+
+
+
+        }
+
+      
+
+        private void dataGridView_test_history_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView_test_history.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                old_test_id = Convert.ToInt32(dataGridView_test_history.Rows[e.RowIndex].Cells[0].Value);
+            }
+
+            MySqlConnection connection = new MySqlConnection(MyConnection2);
+
+            try
+            {
+                connection.Open();
+                string query = "SELECT data_id, velocity FROM data Where tests_test_id=@old_test_id";
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                MySqlCommand myCommand = new MySqlCommand(query, connection);
+                //sorguma bir parametre ekliyorum o da bu olsun diyorum
+                myCommand.Parameters.Add(new MySqlParameter("@old_test_id", old_test_id));
+                dataAdapter.SelectCommand = myCommand;
+                DataSet table = new DataSet();
+                dataAdapter.Fill(table, "data");
+                dataGridView_test_history.DataSource = table.Tables["data"];
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                throw;
+            }
+        }
+
+     
     }
 }

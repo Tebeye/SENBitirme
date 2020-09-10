@@ -34,15 +34,16 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_test_history = new System.Windows.Forms.Button();
             this.btn_volt_amper = new System.Windows.Forms.Button();
             this.btn_current_test = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView_test_history = new System.Windows.Forms.DataGridView();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.btn_reset_speed = new System.Windows.Forms.Button();
             this.btn_speed_stop = new System.Windows.Forms.Button();
             this.btn_speed_start = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.lbl_arduino_raw_data = new System.Windows.Forms.Label();
             this.timer_arduino = new System.Windows.Forms.Timer(this.components);
             this.cbComPort = new System.Windows.Forms.ComboBox();
@@ -53,9 +54,11 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btn_disconnect = new System.Windows.Forms.Button();
             this.timer_yedekleme = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_test_history)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,7 +67,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.26627F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.73373F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 1);
@@ -86,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 77);
+            this.label1.Size = new System.Drawing.Size(206, 77);
             this.label1.TabIndex = 0;
             this.label1.Text = "Wind Tunnel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -97,7 +100,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.button5, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.button4, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.button3, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btn_test_history, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btn_volt_amper, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btn_current_test, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 80);
@@ -135,17 +138,18 @@
             this.button4.Text = "Settings";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_test_history
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btn_test_history.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(3, 145);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 65);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Old Test";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_test_history.Location = new System.Drawing.Point(3, 145);
+            this.btn_test_history.Name = "btn_test_history";
+            this.btn_test_history.Size = new System.Drawing.Size(128, 65);
+            this.btn_test_history.TabIndex = 2;
+            this.btn_test_history.Text = "Old Test";
+            this.btn_test_history.UseVisualStyleBackColor = true;
+            this.btn_test_history.Click += new System.EventHandler(this.btn_test_history_Click);
             // 
             // btn_volt_amper
             // 
@@ -170,38 +174,41 @@
             this.btn_current_test.TabIndex = 0;
             this.btn_current_test.Text = "Current Test";
             this.btn_current_test.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(1090, 558);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "TR / EN";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_current_test.Click += new System.EventHandler(this.btn_current_test_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.dataGridView_test_history);
             this.groupBox1.Controls.Add(this.zedGraphControl1);
             this.groupBox1.Controls.Add(this.btn_reset_speed);
             this.groupBox1.Controls.Add(this.btn_speed_stop);
             this.groupBox1.Controls.Add(this.btn_speed_start);
-            this.groupBox1.Location = new System.Drawing.Point(216, 80);
+            this.groupBox1.Location = new System.Drawing.Point(215, 80);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(834, 501);
+            this.groupBox1.Size = new System.Drawing.Size(832, 501);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
+            // dataGridView_test_history
+            // 
+            this.dataGridView_test_history.AllowUserToAddRows = false;
+            this.dataGridView_test_history.AllowUserToDeleteRows = false;
+            this.dataGridView_test_history.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_test_history.Location = new System.Drawing.Point(263, 0);
+            this.dataGridView_test_history.MultiSelect = false;
+            this.dataGridView_test_history.Name = "dataGridView_test_history";
+            this.dataGridView_test_history.ReadOnly = true;
+            this.dataGridView_test_history.Size = new System.Drawing.Size(395, 352);
+            this.dataGridView_test_history.TabIndex = 5;
+            this.dataGridView_test_history.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_test_history_CellMouseDoubleClick);
+            // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(98, 0);
+            this.zedGraphControl1.Location = new System.Drawing.Point(114, 0);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
             this.zedGraphControl1.ScrollMaxX = 0D;
@@ -251,6 +258,19 @@
             this.btn_speed_start.Text = "Start";
             this.btn_speed_start.UseVisualStyleBackColor = false;
             this.btn_speed_start.Click += new System.EventHandler(this.btn_speed_start_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(1090, 558);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "TR / EN";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // lbl_arduino_raw_data
             // 
@@ -327,6 +347,16 @@
             this.timer_yedekleme.Enabled = true;
             this.timer_yedekleme.Tick += new System.EventHandler(this.timer_yedekleme_Tick);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::BitirmeProjesiArayuzProjesi.Properties.Resources.returnPng;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(632, 358);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(26, 29);
+            this.panel1.TabIndex = 6;
+
+            // 
             // Analyse_page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,6 +379,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_test_history)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,7 +392,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_test_history;
         private System.Windows.Forms.Button btn_volt_amper;
         private System.Windows.Forms.Button btn_current_test;
         private System.Windows.Forms.Button button2;
@@ -380,5 +411,7 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btn_disconnect;
         private System.Windows.Forms.Timer timer_yedekleme;
+        private System.Windows.Forms.DataGridView dataGridView_test_history;
+        private System.Windows.Forms.Panel panel1;
     }
 }
