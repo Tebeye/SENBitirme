@@ -157,14 +157,19 @@
             this.btn_delete_user.TabIndex = 1;
             this.btn_delete_user.Text = "Detele User";
             this.btn_delete_user.UseVisualStyleBackColor = true;
+            this.btn_delete_user.Click += new System.EventHandler(this.btn_delete_user_Click);
             // 
             // dataGridView_showuser
             // 
+            this.dataGridView_showuser.AllowUserToAddRows = false;
+            this.dataGridView_showuser.AllowUserToDeleteRows = false;
             this.dataGridView_showuser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_showuser.Location = new System.Drawing.Point(22, 19);
             this.dataGridView_showuser.Name = "dataGridView_showuser";
+            this.dataGridView_showuser.ReadOnly = true;
             this.dataGridView_showuser.Size = new System.Drawing.Size(287, 150);
             this.dataGridView_showuser.TabIndex = 0;
+            this.dataGridView_showuser.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_showuser_CellMouseClick);
             // 
             // AdminPage
             // 
