@@ -41,7 +41,7 @@ namespace BitirmeProjesiArayuzProjesi
             // 
             // pnl_login
             // 
-            this.pnl_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(180)))), ((int)(((byte)(220)))), ((int)(((byte)(120)))));
+            this.pnl_login.BackColor = System.Drawing.Color.LightBlue;
             this.pnl_login.Controls.Add(this.lbl_guest);
             this.pnl_login.Controls.Add(this.btn_login);
             this.pnl_login.Controls.Add(this.textBox3);
