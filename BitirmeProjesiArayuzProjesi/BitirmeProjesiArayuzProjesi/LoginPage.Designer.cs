@@ -84,6 +84,7 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox3.Size = new System.Drawing.Size(120, 20);
             this.textBox3.TabIndex = 8;
             this.textBox3.Text = "password";
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox4
             // 
@@ -93,6 +94,7 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox4.Size = new System.Drawing.Size(120, 20);
             this.textBox4.TabIndex = 7;
             this.textBox4.Text = "username";
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // label2
             // 
@@ -116,6 +118,7 @@ namespace BitirmeProjesiArayuzProjesi
             this.Name = "LoginPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Page";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginPage_KeyPress);
             this.pnl_login.ResumeLayout(false);
             this.pnl_login.PerformLayout();
             this.ResumeLayout(false);

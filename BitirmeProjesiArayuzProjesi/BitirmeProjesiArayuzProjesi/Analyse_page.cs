@@ -38,7 +38,7 @@ namespace BitirmeProjesiArayuzProjesi
         LineItem myCurveTwo;
         RollingPointPairList listPointsThree = new RollingPointPairList(40);
         LineItem myCurveThree;
-
+        string debugg;//string for debug
         int old_test_id;
         Boolean dataGridView_clickable = true;
         int hataliPaketSayisi = 0;
@@ -60,7 +60,7 @@ namespace BitirmeProjesiArayuzProjesi
             changePanel(panel_current_test);
             panel_test_history.Location = panel_current_test.Location;
             return_click.Visible = false;
-
+            
             try
             {
                 mySerialPort = new SerialPort();
@@ -89,7 +89,7 @@ namespace BitirmeProjesiArayuzProjesi
             SerialPort sp = (SerialPort)sender;
             try
             {
-                mySerialPort.Read(cozulen_paket, 0, 8);
+                mySerialPort.Read(cozulen_paket, 0, 1);
             }
             catch (Exception ex)
             {
@@ -98,7 +98,8 @@ namespace BitirmeProjesiArayuzProjesi
                 return;
 
             }
-            paketCozme myVar = paketCozme.BirinciDogrulama;
+
+            /*paketCozme myVar = paketCozme.BirinciDogrulama;
             for (int i = 0; i < cozulen_paket.Length; i++)
             {
 
@@ -129,47 +130,9 @@ namespace BitirmeProjesiArayuzProjesi
                 {
                     myVar = paketCozme.BirinciDogrulama;
                 }
+            }*/
+            gelenveri = cozulen_paket[0];
 
-
-
-                /*switch (myVar)
-                {
-                    case paketCozme.BirinciDogrulama:
-                        if (cozulen_paket[i] == 0xAB)
-                        {
-                            myVar = paketCozme.İkinciDogrulama;
-                        }
-                        else
-                        {
-                            myVar = paketCozme.BirinciDogrulama;
-                        }
-                        break;
-
-                    case paketCozme.İkinciDogrulama:
-                        if (cozulen_paket[i] == 0xFD)
-                        {
-                            myVar = paketCozme.Veriler;
-                        }
-                        else
-                        {
-                            myVar = paketCozme.BirinciDogrulama;
-                        }
-                        break;
-                    case paketCozme.Veriler:
-                        if (i >= 7)
-                        {
-                            hataliPaketSayisi++;
-                        }
-                        else
-                        {
-                            gelenveri = cozulen_paket[i];
-
-                            // gelenveri = cozulen_paket[i];
-                        }
-                        myVar = paketCozme.BirinciDogrulama;
-                        break;
-                }*/
-            }
 
 
 
@@ -491,5 +454,7 @@ namespace BitirmeProjesiArayuzProjesi
             return_click.Visible = false;
             dataGridView_clickable = true;
         }
+
+      
     }
 }

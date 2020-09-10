@@ -53,6 +53,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_current_test = new System.Windows.Forms.Panel();
+            this.debugLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView_test_history = new System.Windows.Forms.DataGridView();
             this.panel_test_history = new System.Windows.Forms.Panel();
@@ -129,6 +130,7 @@
             // 
             // zedGraphControl1
             // 
+            this.zedGraphControl1.IsEnableWheelZoom = false;
             this.zedGraphControl1.Location = new System.Drawing.Point(3, 4);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
@@ -206,7 +208,7 @@
             // timer_arduino
             // 
             this.timer_arduino.Enabled = true;
-            this.timer_arduino.Interval = 50;
+            this.timer_arduino.Interval = 500;
             this.timer_arduino.Tick += new System.EventHandler(this.timer_arduino_Tick);
             // 
             // cbComPort
@@ -292,6 +294,7 @@
             // 
             // panel_current_test
             // 
+            this.panel_current_test.Controls.Add(this.debugLabel);
             this.panel_current_test.Controls.Add(this.zedGraphControl1);
             this.panel_current_test.Controls.Add(this.btn_reset_speed);
             this.panel_current_test.Controls.Add(this.btn_speed_start);
@@ -300,6 +303,15 @@
             this.panel_current_test.Name = "panel_current_test";
             this.panel_current_test.Size = new System.Drawing.Size(744, 363);
             this.panel_current_test.TabIndex = 13;
+            // 
+            // debugLabel
+            // 
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.Location = new System.Drawing.Point(85, 323);
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(35, 13);
+            this.debugLabel.TabIndex = 5;
+            this.debugLabel.Text = "label2";
             // 
             // panel4
             // 
@@ -366,6 +378,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel_current_test.ResumeLayout(false);
+            this.panel_current_test.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_test_history)).EndInit();
@@ -403,5 +416,6 @@
         private System.Windows.Forms.DataGridView dataGridView_test_history;
         private System.Windows.Forms.Panel panel_test_history;
         private System.Windows.Forms.Panel return_click;
+        private System.Windows.Forms.Label debugLabel;
     }
 }

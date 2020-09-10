@@ -26,5 +26,31 @@ namespace BitirmeProjesiArayuzProjesi
             this.Visible = false;
             newAnalysePage.Visible = true;
         }
+
+        private void LoginPage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == '\r')
+            {
+                Analyse_page newAnalysePage = new Analyse_page();
+                this.Visible = false;
+                newAnalysePage.Visible = true;
+            }
+
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                Analyse_page newAnalysePage = new Analyse_page();
+                this.Visible = false;
+                newAnalysePage.Visible = true;
+            }
+        }
     }
 }
