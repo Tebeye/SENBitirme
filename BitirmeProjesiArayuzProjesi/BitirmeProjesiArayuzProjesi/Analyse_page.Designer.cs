@@ -317,12 +317,11 @@
             // 
             this.dataGridView_test_history.AllowUserToAddRows = false;
             this.dataGridView_test_history.AllowUserToDeleteRows = false;
-            this.dataGridView_test_history.AllowUserToResizeColumns = false;
             this.dataGridView_test_history.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_test_history.Location = new System.Drawing.Point(264, 22);
             this.dataGridView_test_history.Name = "dataGridView_test_history";
             this.dataGridView_test_history.ReadOnly = true;
-            this.dataGridView_test_history.Size = new System.Drawing.Size(383, 329);
+            this.dataGridView_test_history.Size = new System.Drawing.Size(599, 329);
             this.dataGridView_test_history.TabIndex = 5;
             this.dataGridView_test_history.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_test_history_CellMouseDoubleClick);
             // 

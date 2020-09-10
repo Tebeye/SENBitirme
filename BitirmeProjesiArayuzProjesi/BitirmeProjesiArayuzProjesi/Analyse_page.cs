@@ -40,6 +40,7 @@ namespace BitirmeProjesiArayuzProjesi
         LineItem myCurveThree;
 
         int old_test_id;
+        Boolean dataGridView_clickable = true;
         int hataliPaketSayisi = 0;
         int counter = 0;
         static Byte[] cozulen_paket = new Byte[8];
@@ -56,7 +57,6 @@ namespace BitirmeProjesiArayuzProjesi
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
             dataGridView_test_history.Visible = false;
-            
 
 
             try
@@ -377,7 +377,7 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_test_history_Click(object sender, EventArgs e)
         {
-
+            dataGridView_clickable = true;
             zedGraphControl1.Visible = false;
             btn_speed_start.Visible = false;
             btn_speed_stop.Visible = false;
@@ -398,6 +398,9 @@ namespace BitirmeProjesiArayuzProjesi
 
 
                 dataGridView_test_history.DataSource = table.Tables["tests"];
+                dataGridView_test_history.Columns[1].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                dataGridView_test_history.Columns[2].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                dataGridView_test_history.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
 
             }
@@ -418,6 +421,13 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void dataGridView_test_history_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!dataGridView_clickable || e.ColumnIndex<0 || e.RowIndex<0)
+            {
+                return;
+            }
+
+            dataGridView_clickable = false;
+            
             if (dataGridView_test_history.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 old_test_id = Convert.ToInt32(dataGridView_test_history.Rows[e.RowIndex].Cells[0].Value);
@@ -437,7 +447,7 @@ namespace BitirmeProjesiArayuzProjesi
                 DataSet table = new DataSet();
                 dataAdapter.Fill(table, "data");
                 dataGridView_test_history.DataSource = table.Tables["data"];
-
+                
 
             }
             catch (Exception ex)
