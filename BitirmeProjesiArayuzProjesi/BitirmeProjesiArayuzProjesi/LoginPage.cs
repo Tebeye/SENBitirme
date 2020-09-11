@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace BitirmeProjesiArayuzProjesi
 {
     public partial class LoginPage : Form
     {
-        
 
+        string RecoveryMain = "OdpWgnthH0xD2zJpUmd51DqBs1wy9sBqxdIhmFBycTQ9usNKui";
         public LoginPage()
         {
             InitializeComponent();
@@ -121,10 +122,47 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_adminPage_Click(object sender, EventArgs e)
         {
-            
-            AdminPage newAdminPage = new AdminPage();
-            this.Visible = false;
-            newAdminPage.Visible = true;
+
+            string pathUsb="Path";
+            DriveInfo[] mydrives = DriveInfo.GetDrives();
+            foreach (DriveInfo mydrive in mydrives)
+            {
+                //Check for removable devices like USB's
+                if (mydrive.DriveType == DriveType.Removable)
+                {
+                    //Check for that specific USB
+                    if (mydrive.VolumeLabel.Equals("WINDTUNNEL"))
+                    {
+                        DirectoryInfo path = mydrive.RootDirectory;
+                        pathUsb= Path.GetFullPath(path.ToString());
+                       
+                    }
+                }
+            }
+            string usbRecovery = System.IO.File.ReadAllText(@pathUsb + "RecoveryKey.txt");
+
+
+
+
+
+
+
+            if (usbRecovery==RecoveryMain)
+            {
+
+                AdminPage newAdminPage = new AdminPage();
+                this.Visible = true;
+                newAdminPage.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Recovery key does not match!");
+            }
+
+
+
+
+
         }
     }
 }
