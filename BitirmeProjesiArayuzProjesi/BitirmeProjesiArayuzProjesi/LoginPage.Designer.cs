@@ -94,13 +94,16 @@ namespace BitirmeProjesiArayuzProjesi
             // 
             // textBox3
             // 
-            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBox3.ForeColor = System.Drawing.Color.Gray;
             this.textBox3.Location = new System.Drawing.Point(60, 113);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(120, 20);
             this.textBox3.TabIndex = 8;
-            this.textBox3.Text = "password";
+            this.textBox3.Text = "Enter password here";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginWhenEnterPressed);
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
             // textBox4
             // 
@@ -109,8 +112,10 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(120, 20);
             this.textBox4.TabIndex = 7;
-            this.textBox4.Text = "username";
+            this.textBox4.Text = "Enter username here";
+            this.textBox4.Enter += new System.EventHandler(this.textBox4_Enter);
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginWhenEnterPressed);
+            this.textBox4.Leave += new System.EventHandler(this.textBox4_Leave);
             // 
             // label2
             // 
@@ -127,7 +132,7 @@ namespace BitirmeProjesiArayuzProjesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 313);
+            this.ClientSize = new System.Drawing.Size(240, 320);
             this.Controls.Add(this.pnl_login);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;

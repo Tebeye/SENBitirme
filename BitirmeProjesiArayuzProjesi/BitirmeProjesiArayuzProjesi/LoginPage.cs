@@ -144,5 +144,56 @@ namespace BitirmeProjesiArayuzProjesi
 
 
         }
+
+        private void textBox4_Enter(object sender, EventArgs e)
+        {
+            if (textBox4.Text.ToString().Equals("Enter username here")) {
+                textBox4.Text = "";
+                textBox4.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox4_Leave(object sender, EventArgs e)
+        {
+            if (textBox4.Text.Trim().Equals(""))
+            {
+                textBox4.Text = "Enter username here";
+                textBox4.ForeColor = Color.Gray;
+            }
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            
+            if (textBox3.Text.Trim().Equals("Enter password here"))
+            {
+                textBox3.Text = "";
+                textBox3.PasswordChar = '*';
+                textBox3.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Trim().Equals(""))
+            {                
+                textBox3.Text = "Enter password here";
+                textBox3.PasswordChar = '\0';
+                textBox3.ForeColor = Color.Gray;
+            }
+            else
+            {
+                textBox3.PasswordChar = '*';
+                textBox3.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Trim().Equals("Enter password here"))
+            {
+
+            }
+        }
     }
 }
