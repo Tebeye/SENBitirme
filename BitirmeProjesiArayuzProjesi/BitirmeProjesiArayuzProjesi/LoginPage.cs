@@ -20,11 +20,51 @@ namespace BitirmeProjesiArayuzProjesi
 
         Pen p = new Pen(Color.Red);
 
+        public static Boolean userLogged = false;
+
+        public class UserIsNotValidException : Exception
+        {
+            public UserIsNotValidException(string message) : base(message)
+            {
+            }
+        }
+        public class UserNamePassword
+        {
+            public void checkUserNamePassword(object username, object password)
+            {
+
+                if (username.ToString() == "username" && password.ToString() == "password")
+                {
+                    userLogged = true;
+                }
+                else
+                {
+                    throw (new UserIsNotValidException("Username or password is wrong"));
+                }
+            }
+        }
+
         private void btn_login_Click(object sender, EventArgs e)
         {
-            Analyse_page newAnalysePage = new Analyse_page();
-            this.Visible = false;
-            newAnalysePage.Visible = true;
+
+            try
+            {
+                UserNamePassword user = new UserNamePassword();
+                user.checkUserNamePassword(textBox4.Text, textBox3.Text);
+            }
+            catch (UserIsNotValidException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (userLogged)
+                {
+                    Analyse_page newAnalysePage = new Analyse_page();
+                    this.Visible = false;
+                    newAnalysePage.Visible = true;
+                }
+            }
         }
 
         private void LoginPage_KeyPress(object sender, KeyPressEventArgs e)
