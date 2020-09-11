@@ -64,10 +64,7 @@ namespace BitirmeProjesiArayuzProjesi
             myAdapter.SelectCommand = command;
             DataTable table = new DataTable();
             myAdapter.Fill(table);
-
-            // Bütün tabloyu alıp aynı mysql "where" kısmı gibi içinden veri aratabilirsin
             DataRow[] row = table.Select();
-            // altta row[0] var. Burası sürekli böyle kalıcak içinden username veya başka bir sütun çekebilirsin
              
 
 
@@ -127,10 +124,9 @@ namespace BitirmeProjesiArayuzProjesi
             DriveInfo[] mydrives = DriveInfo.GetDrives();
             foreach (DriveInfo mydrive in mydrives)
             {
-                //Check for removable devices like USB's
+
                 if (mydrive.DriveType == DriveType.Removable)
                 {
-                    //Check for that specific USB
                     if (mydrive.VolumeLabel.Equals("WINDTUNNEL"))
                     {
                         DirectoryInfo path = mydrive.RootDirectory;
@@ -140,11 +136,6 @@ namespace BitirmeProjesiArayuzProjesi
                 }
             }
             string usbRecovery = System.IO.File.ReadAllText(@pathUsb + "RecoveryKey.txt");
-
-
-
-
-
 
 
             if (usbRecovery==RecoveryMain)
