@@ -12,6 +12,8 @@ namespace BitirmeProjesiArayuzProjesi
 {
     public partial class LoginPage : Form
     {
+        string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
+
         public LoginPage()
         {
             InitializeComponent();
