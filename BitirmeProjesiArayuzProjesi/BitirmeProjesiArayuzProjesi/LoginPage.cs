@@ -100,9 +100,41 @@ namespace BitirmeProjesiArayuzProjesi
         {
             if(e.KeyChar == '\r')
             {
-                Analyse_page newAnalysePage = new Analyse_page();
-                this.Visible = false;
-                newAnalysePage.Visible = true;
+
+                string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
+                string query = "SELECT * FROM users where username=@username";
+                MySqlConnection connection = new MySqlConnection(MyConnection2);
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter();
+                command.Parameters.AddWithValue("@username", textBox4.Text);
+                myAdapter.SelectCommand = command;
+                DataTable table = new DataTable();
+                myAdapter.Fill(table);
+                DataRow[] row = table.Select();
+
+
+
+                string password = row[0]["password"].ToString();
+                string username = row[0]["username"].ToString();
+
+                try
+                {
+                    UserNamePassword user = new UserNamePassword();
+                    user.checkUserNamePassword(textBox4.Text, textBox3.Text, username, password);
+                }
+                catch (UserIsNotValidException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (userLogged)
+                    {
+                        Analyse_page newAnalysePage = new Analyse_page();
+                        this.Visible = false;
+                        newAnalysePage.Visible = true;
+                    }
+                }
             }
 
         }
@@ -111,9 +143,41 @@ namespace BitirmeProjesiArayuzProjesi
         {
             if (e.KeyChar == '\r')
             {
-                Analyse_page newAnalysePage = new Analyse_page();
-                this.Visible = false;
-                newAnalysePage.Visible = true;
+
+                string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
+                string query = "SELECT * FROM users where username=@username";
+                MySqlConnection connection = new MySqlConnection(MyConnection2);
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter();
+                command.Parameters.AddWithValue("@username", textBox4.Text);
+                myAdapter.SelectCommand = command;
+                DataTable table = new DataTable();
+                myAdapter.Fill(table);
+                DataRow[] row = table.Select();
+
+
+
+                string password = row[0]["password"].ToString();
+                string username = row[0]["username"].ToString();
+
+                try
+                {
+                    UserNamePassword user = new UserNamePassword();
+                    user.checkUserNamePassword(textBox4.Text, textBox3.Text, username, password);
+                }
+                catch (UserIsNotValidException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (userLogged)
+                    {
+                        Analyse_page newAnalysePage = new Analyse_page();
+                        this.Visible = false;
+                        newAnalysePage.Visible = true;
+                    }
+                }
             }
         }
 
