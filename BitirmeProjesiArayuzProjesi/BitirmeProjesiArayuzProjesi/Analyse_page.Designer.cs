@@ -169,6 +169,7 @@
             this.btn_reset_speed.TabIndex = 4;
             this.btn_reset_speed.Text = "RESET";
             this.btn_reset_speed.UseVisualStyleBackColor = false;
+            this.btn_reset_speed.Click += new System.EventHandler(this.btn_reset_speed_Click);
             // 
             // btn_speed_stop
             // 
@@ -419,6 +420,7 @@
             this.MaximizeBox = false;
             this.Name = "Analyse_page";
             this.Text = "Analyse_page";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Analyse_page_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Analyse_page_FormClosed);
             this.Load += new System.EventHandler(this.Analyse_page_Load);
             this.panel1.ResumeLayout(false);

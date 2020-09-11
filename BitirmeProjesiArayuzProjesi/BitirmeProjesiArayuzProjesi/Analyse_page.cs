@@ -516,5 +516,17 @@ namespace BitirmeProjesiArayuzProjesi
         {
             changePanel(panel_settings);
         }
+
+        private void btn_reset_speed_Click(object sender, EventArgs e)
+        {
+            counter = 0;
+            listPointsOne.Clear();
+            zedGraphControl1.Refresh();
+        }
+
+        private void Analyse_page_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btn_speed_stop.PerformClick();
+        }
     }
 }
