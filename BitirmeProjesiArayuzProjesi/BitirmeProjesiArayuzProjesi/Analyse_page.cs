@@ -32,12 +32,9 @@ namespace BitirmeProjesiArayuzProjesi
         string[] ports = SerialPort.GetPortNames();
         // 1
         GraphPane myPane = new GraphPane();
-        RollingPointPairList listPointsOne = new RollingPointPairList(40);
+        RollingPointPairList listPointsOne = new RollingPointPairList(1000);
         LineItem myCurveOne;
-        RollingPointPairList listPointsTwo = new RollingPointPairList(40);
-        LineItem myCurveTwo;
-        RollingPointPairList listPointsThree = new RollingPointPairList(40);
-        LineItem myCurveThree;
+
         string debugg;//string for debug
         int old_test_id;
         Boolean dataGridView_clickable = true;
@@ -49,8 +46,9 @@ namespace BitirmeProjesiArayuzProjesi
         static int gelenveri;
         static char gelen_veri;
         public SerialPort _serialPort;
-        
-        public Analyse_page()
+        Form loginPage;
+
+        public Analyse_page(Form form)
         {
 
             InitializeComponent();
@@ -59,14 +57,16 @@ namespace BitirmeProjesiArayuzProjesi
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
             zedGraphControl1.GraphPane.XAxis.Scale.Max = 120;
-           
-
+            zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
+            myPane.Legend.IsVisible = false;
             changePanel(panel_current_test);
             panel_test_history.Location = panel_current_test.Location;
             panel_settings.Location = panel_current_test.Location;
             return_click.Visible = false;
             comboBox_change_language.SelectedIndex = 0;
-            
+
+            loginPage = form;
+
             try
             {
                 mySerialPort = new SerialPort();
@@ -76,7 +76,7 @@ namespace BitirmeProjesiArayuzProjesi
                 MessageBox.Show(ex.Message);
                 return;
             }
-
+            zedGraphControl1.GraphPane.CurveList.Capacity = 500;
         }
 
 
@@ -247,7 +247,7 @@ namespace BitirmeProjesiArayuzProjesi
             zedGraphControl1.Invalidate();
             zedGraphControl1.AxisChange();
             zedGraphControl1.Refresh();
-
+            
 
             /* Adding connected ports */
             foreach (string port in ports)
@@ -299,6 +299,12 @@ namespace BitirmeProjesiArayuzProjesi
             {
                 mySerialPort.Close();
             }
+
+
+            loginPage.Visible = true;
+
+
+
         }
 
         private void btn_disconnect_Click(object sender, EventArgs e)

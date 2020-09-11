@@ -13,13 +13,17 @@ namespace BitirmeProjesiArayuzProjesi
 {
     public partial class AdminPage : Form
     {
-        public AdminPage()
+        Form loginPage;
+
+        public AdminPage(Form form)
         {
             InitializeComponent();
             Size = new Size(470, 280);
 
+            panel_showuser.Size = panel_adduser.Size;
             panel_showuser.Location = panel_adduser.Location;
-
+            changePanel(panel_adduser);
+            loginPage = form;
         }
 
 
@@ -153,6 +157,11 @@ namespace BitirmeProjesiArayuzProjesi
 
                 throw;
             }
+        }
+
+        private void AdminPage_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginPage.Visible = true;
         }
     }
 }

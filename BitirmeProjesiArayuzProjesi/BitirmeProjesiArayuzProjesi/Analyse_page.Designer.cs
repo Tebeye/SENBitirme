@@ -135,7 +135,16 @@
             // 
             // zedGraphControl1
             // 
+            this.zedGraphControl1.IsEnableHPan = false;
+            this.zedGraphControl1.IsEnableHZoom = false;
+            this.zedGraphControl1.IsEnableVPan = false;
+            this.zedGraphControl1.IsEnableVZoom = false;
             this.zedGraphControl1.IsEnableWheelZoom = false;
+            this.zedGraphControl1.IsPrintFillPage = false;
+            this.zedGraphControl1.IsPrintKeepAspectRatio = false;
+            this.zedGraphControl1.IsPrintScaleAll = false;
+            this.zedGraphControl1.IsShowContextMenu = false;
+            this.zedGraphControl1.IsShowCopyMessage = false;
             this.zedGraphControl1.Location = new System.Drawing.Point(3, 4);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;

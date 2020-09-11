@@ -34,11 +34,11 @@ namespace BitirmeProjesiArayuzProjesi
         }
         public class UserNamePassword
         {
-            public void checkUserNamePassword(object username, object password ,string usernameDB ,string passDB)
+            public void checkUserNamePassword(object username, object password, string usernameDB, string passDB)
             {
-                
 
- 
+
+
 
                 if (username.ToString() == usernameDB && password.ToString() == passDB)
                 {
@@ -53,28 +53,31 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-
-
-            string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
-            string query = "SELECT * FROM users where username=@username";
-            MySqlConnection connection = new MySqlConnection(MyConnection2);
-            MySqlCommand command = new MySqlCommand(query, connection);
-            MySqlDataAdapter myAdapter = new MySqlDataAdapter();
-            command.Parameters.AddWithValue("@username", textBox4.Text);
-            myAdapter.SelectCommand = command;
-            DataTable table = new DataTable();
-            myAdapter.Fill(table);
-            DataRow[] row = table.Select();
-             
-
-
-            string password = row[0]["password"].ToString();
-            string username = row[0]["username"].ToString();
-
             try
             {
+
+                string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
+                string query = "SELECT * FROM users where username=@username";
+                MySqlConnection connection = new MySqlConnection(MyConnection2);
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataAdapter myAdapter = new MySqlDataAdapter();
+                command.Parameters.AddWithValue("@username", textBox4.Text);
+                myAdapter.SelectCommand = command;
+                DataTable table = new DataTable();
+                myAdapter.Fill(table);
+                DataRow[] row = table.Select();
+                if (row.Length!=1)
+                {
+                    MessageBox.Show("Username cannot be found!");
+                    return;
+                }
+
+                string password = row[0]["password"].ToString();
+                string username = row[0]["username"].ToString();
+
+
                 UserNamePassword user = new UserNamePassword();
-                user.checkUserNamePassword(textBox4.Text, textBox3.Text,username, password);
+                user.checkUserNamePassword(textBox4.Text, textBox3.Text, username, password);
             }
             catch (UserIsNotValidException ex)
             {
@@ -84,7 +87,7 @@ namespace BitirmeProjesiArayuzProjesi
             {
                 if (userLogged)
                 {
-                    Analyse_page newAnalysePage = new Analyse_page();
+                    Analyse_page newAnalysePage = new Analyse_page(this);
                     this.Visible = false;
                     newAnalysePage.Visible = true;
                 }
@@ -93,98 +96,20 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void LoginPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar == '\r')
-            {
-
-                string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
-                string query = "SELECT * FROM users where username=@username";
-                MySqlConnection connection = new MySqlConnection(MyConnection2);
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter();
-                command.Parameters.AddWithValue("@username", textBox4.Text);
-                myAdapter.SelectCommand = command;
-                DataTable table = new DataTable();
-                myAdapter.Fill(table);
-                DataRow[] row = table.Select();
-
-
-
-                string password = row[0]["password"].ToString();
-                string username = row[0]["username"].ToString();
-
-                try
-                {
-                    UserNamePassword user = new UserNamePassword();
-                    user.checkUserNamePassword(textBox4.Text, textBox3.Text, username, password);
-                }
-                catch (UserIsNotValidException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (userLogged)
-                    {
-                        Analyse_page newAnalysePage = new Analyse_page();
-                        this.Visible = false;
-                        newAnalysePage.Visible = true;
-                    }
-                }
-            }
 
         }
 
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
+        private void loginWhenEnterPressed(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == (char)Keys.Enter)
             {
-
-                string MyConnection2 = "Server=127.0.0.1;Database=new_schema;Uid=root;Pwd=BlVH5thGSFfHE209Nt4E;";
-                string query = "SELECT * FROM users where username=@username";
-                MySqlConnection connection = new MySqlConnection(MyConnection2);
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter myAdapter = new MySqlDataAdapter();
-                command.Parameters.AddWithValue("@username", textBox4.Text);
-                myAdapter.SelectCommand = command;
-                DataTable table = new DataTable();
-                myAdapter.Fill(table);
-                DataRow[] row = table.Select();
-
-
-
-                string password = row[0]["password"].ToString();
-                string username = row[0]["username"].ToString();
-
-                try
-                {
-                    UserNamePassword user = new UserNamePassword();
-                    user.checkUserNamePassword(textBox4.Text, textBox3.Text, username, password);
-                }
-                catch (UserIsNotValidException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (userLogged)
-                    {
-                        Analyse_page newAnalysePage = new Analyse_page();
-                        this.Visible = false;
-                        newAnalysePage.Visible = true;
-                    }
-                }
+                btn_login.PerformClick();
             }
         }
 
         private void btn_adminPage_Click(object sender, EventArgs e)
         {
 
-            string pathUsb="Path";
+            string pathUsb = "Path";
             DriveInfo[] mydrives = DriveInfo.GetDrives();
             foreach (DriveInfo mydrive in mydrives)
             {
@@ -194,19 +119,19 @@ namespace BitirmeProjesiArayuzProjesi
                     if (mydrive.VolumeLabel.Equals("WINDTUNNEL"))
                     {
                         DirectoryInfo path = mydrive.RootDirectory;
-                        pathUsb= Path.GetFullPath(path.ToString());
-                       
+                        pathUsb = Path.GetFullPath(path.ToString());
+
                     }
                 }
             }
             string usbRecovery = System.IO.File.ReadAllText(@pathUsb + "RecoveryKey.txt");
 
 
-            if (usbRecovery==RecoveryMain)
+            if (usbRecovery == RecoveryMain)
             {
 
-                AdminPage newAdminPage = new AdminPage();
-                this.Visible = true;
+                AdminPage newAdminPage = new AdminPage(this);
+                this.Visible = false;
                 newAdminPage.Visible = true;
             }
             else

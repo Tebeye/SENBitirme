@@ -31,12 +31,12 @@ namespace BitirmeProjesiArayuzProjesi
         private void InitializeComponent()
         {
             this.pnl_login = new System.Windows.Forms.Panel();
+            this.btn_adminPage = new System.Windows.Forms.Button();
             this.lbl_guest = new System.Windows.Forms.Label();
             this.btn_login = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btn_adminPage = new System.Windows.Forms.Button();
             this.pnl_login.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,20 @@ namespace BitirmeProjesiArayuzProjesi
             this.pnl_login.Name = "pnl_login";
             this.pnl_login.Size = new System.Drawing.Size(240, 320);
             this.pnl_login.TabIndex = 6;
+            // 
+            // btn_adminPage
+            // 
+            this.btn_adminPage.BackColor = System.Drawing.Color.DarkRed;
+            this.btn_adminPage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_adminPage.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btn_adminPage.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_adminPage.Location = new System.Drawing.Point(12, 280);
+            this.btn_adminPage.Name = "btn_adminPage";
+            this.btn_adminPage.Size = new System.Drawing.Size(73, 21);
+            this.btn_adminPage.TabIndex = 11;
+            this.btn_adminPage.Text = "Admin Page";
+            this.btn_adminPage.UseVisualStyleBackColor = false;
+            this.btn_adminPage.Click += new System.EventHandler(this.btn_adminPage_Click);
             // 
             // lbl_guest
             // 
@@ -86,7 +100,7 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox3.Size = new System.Drawing.Size(120, 20);
             this.textBox3.TabIndex = 8;
             this.textBox3.Text = "password";
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginWhenEnterPressed);
             // 
             // textBox4
             // 
@@ -96,7 +110,7 @@ namespace BitirmeProjesiArayuzProjesi
             this.textBox4.Size = new System.Drawing.Size(120, 20);
             this.textBox4.TabIndex = 7;
             this.textBox4.Text = "username";
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loginWhenEnterPressed);
             // 
             // label2
             // 
@@ -108,20 +122,6 @@ namespace BitirmeProjesiArayuzProjesi
             this.label2.TabIndex = 6;
             this.label2.Text = "Wind Tunnel";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_adminPage
-            // 
-            this.btn_adminPage.BackColor = System.Drawing.Color.DarkRed;
-            this.btn_adminPage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_adminPage.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_adminPage.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_adminPage.Location = new System.Drawing.Point(12, 280);
-            this.btn_adminPage.Name = "btn_adminPage";
-            this.btn_adminPage.Size = new System.Drawing.Size(73, 21);
-            this.btn_adminPage.TabIndex = 11;
-            this.btn_adminPage.Text = "Admin Page";
-            this.btn_adminPage.UseVisualStyleBackColor = false;
-            this.btn_adminPage.Click += new System.EventHandler(this.btn_adminPage_Click);
             // 
             // LoginPage
             // 
