@@ -53,7 +53,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_current_test = new System.Windows.Forms.Panel();
-            this.debugLabel = new System.Windows.Forms.Label();
+            this.connectCheckLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView_test_history = new System.Windows.Forms.DataGridView();
             this.panel_test_history = new System.Windows.Forms.Panel();
@@ -160,7 +160,8 @@
             // 
             // btn_reset_speed
             // 
-            this.btn_reset_speed.BackColor = System.Drawing.Color.SteelBlue;
+            this.btn_reset_speed.BackColor = System.Drawing.Color.Gray;
+            this.btn_reset_speed.Enabled = false;
             this.btn_reset_speed.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_reset_speed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btn_reset_speed.Location = new System.Drawing.Point(594, 307);
@@ -173,7 +174,8 @@
             // 
             // btn_speed_stop
             // 
-            this.btn_speed_stop.BackColor = System.Drawing.Color.Red;
+            this.btn_speed_stop.BackColor = System.Drawing.Color.Gray;
+            this.btn_speed_stop.Enabled = false;
             this.btn_speed_stop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_speed_stop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btn_speed_stop.Location = new System.Drawing.Point(441, 307);
@@ -220,6 +222,7 @@
             this.lbl_arduino_raw_data.Size = new System.Drawing.Size(57, 13);
             this.lbl_arduino_raw_data.TabIndex = 1;
             this.lbl_arduino_raw_data.Text = "VERI YOK";
+            this.lbl_arduino_raw_data.Visible = false;
             this.lbl_arduino_raw_data.Click += new System.EventHandler(this.lbl_arduino_raw_data_Click);
             // 
             // timer_arduino
@@ -264,7 +267,7 @@
             // 
             // btn_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(484, 13);
+            this.btn_connect.Location = new System.Drawing.Point(516, 13);
             this.btn_connect.Name = "btn_connect";
             this.btn_connect.Size = new System.Drawing.Size(75, 23);
             this.btn_connect.TabIndex = 9;
@@ -274,7 +277,7 @@
             // 
             // btn_disconnect
             // 
-            this.btn_disconnect.Location = new System.Drawing.Point(565, 13);
+            this.btn_disconnect.Location = new System.Drawing.Point(597, 13);
             this.btn_disconnect.Name = "btn_disconnect";
             this.btn_disconnect.Size = new System.Drawing.Size(90, 23);
             this.btn_disconnect.TabIndex = 10;
@@ -310,7 +313,6 @@
             // 
             // panel_current_test
             // 
-            this.panel_current_test.Controls.Add(this.debugLabel);
             this.panel_current_test.Controls.Add(this.zedGraphControl1);
             this.panel_current_test.Controls.Add(this.btn_reset_speed);
             this.panel_current_test.Controls.Add(this.btn_speed_start);
@@ -320,17 +322,20 @@
             this.panel_current_test.Size = new System.Drawing.Size(744, 363);
             this.panel_current_test.TabIndex = 13;
             // 
-            // debugLabel
+            // connectCheckLabel
             // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(85, 323);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(35, 13);
-            this.debugLabel.TabIndex = 5;
-            this.debugLabel.Text = "label2";
+            this.connectCheckLabel.AutoSize = true;
+            this.connectCheckLabel.BackColor = System.Drawing.Color.Red;
+            this.connectCheckLabel.ForeColor = System.Drawing.Color.White;
+            this.connectCheckLabel.Location = new System.Drawing.Point(418, 18);
+            this.connectCheckLabel.Name = "connectCheckLabel";
+            this.connectCheckLabel.Size = new System.Drawing.Size(82, 13);
+            this.connectCheckLabel.TabIndex = 5;
+            this.connectCheckLabel.Text = "Not Connected!";
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.connectCheckLabel);
             this.panel4.Controls.Add(this.cbComPort);
             this.panel4.Controls.Add(this.lbl_arduino_raw_data);
             this.panel4.Controls.Add(this.cbBaud);
@@ -427,7 +432,6 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel_current_test.ResumeLayout(false);
-            this.panel_current_test.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_test_history)).EndInit();
@@ -467,7 +471,7 @@
         private System.Windows.Forms.DataGridView dataGridView_test_history;
         private System.Windows.Forms.Panel panel_test_history;
         private System.Windows.Forms.Panel return_click;
-        private System.Windows.Forms.Label debugLabel;
+        private System.Windows.Forms.Label connectCheckLabel;
         private System.Windows.Forms.Panel panel_settings;
         private System.Windows.Forms.Label labelChangeLanguage;
         private System.Windows.Forms.ComboBox comboBox_change_language;

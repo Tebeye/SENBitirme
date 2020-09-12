@@ -56,7 +56,7 @@ namespace BitirmeProjesiArayuzProjesi
             timer_arduino.Enabled = false;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 25;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
-            zedGraphControl1.GraphPane.XAxis.Scale.Max = 120;
+            zedGraphControl1.GraphPane.XAxis.Scale.Max = 480;
             zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
             myPane.Legend.IsVisible = false;
             changePanel(panel_current_test);
@@ -106,6 +106,15 @@ namespace BitirmeProjesiArayuzProjesi
                 btn_disconnect.Text = "Disconnect";
                 labelChangeLanguage.Text = "Change Language";
                 btn_apply.Text = "Apply";
+                if (connectCheckLabel.Text== "Bağlantı kuruldu!")
+                {
+                    connectCheckLabel.Text = "Connected!";
+                }
+                else
+                {
+                    connectCheckLabel.Text = "Not Connected!";
+                }       
+            
             }
             else if (lan==1)
             {
@@ -121,6 +130,14 @@ namespace BitirmeProjesiArayuzProjesi
                 btn_disconnect.Text = "Bağlantıyı kes";
                 labelChangeLanguage.Text = "Dil Değişikliği:";
                 btn_apply.Text = "Uygula";
+                if (connectCheckLabel.Text == "Connected!")
+                {
+                    connectCheckLabel.Text = "Bağlantı kuruldu!";
+                }
+                else
+                {
+                    connectCheckLabel.Text = "Bağlantı Yok!";
+                }
             }
             else
             {
@@ -281,6 +298,7 @@ namespace BitirmeProjesiArayuzProjesi
                     mySerialPort.Handshake = Handshake.None;
                     mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
                     mySerialPort.Open();
+                   
                 }
                 catch (Exception er)
                 {
@@ -290,6 +308,18 @@ namespace BitirmeProjesiArayuzProjesi
             else
             {
                 //rtbEkran.Text = "seriport already open";
+            }
+            if (mySerialPort.IsOpen == true)
+            {
+                connectCheckLabel.Text = "Connected!";
+                connectCheckLabel.BackColor = Color.LightBlue;
+                connectCheckLabel.ForeColor = Color.Black;
+            }
+            else
+            {
+                connectCheckLabel.Text = "Not Connected!";
+                connectCheckLabel.BackColor = Color.Red;
+                connectCheckLabel.ForeColor = Color.White;
             }
         }
 
@@ -312,7 +342,19 @@ namespace BitirmeProjesiArayuzProjesi
             if (mySerialPort.IsOpen == true)
             {
                 mySerialPort.Close();
+                connectCheckLabel.Text = "Not Connected!";
+                connectCheckLabel.BackColor = Color.Red;
+                connectCheckLabel.ForeColor = Color.White;
             }
+            else
+            {
+                connectCheckLabel.Text = "Not Connected!";
+                connectCheckLabel.BackColor = Color.Red;
+                connectCheckLabel.ForeColor = Color.White;
+            }
+
+
+
         }
 
         private void timer_yedekleme_Tick(object sender, EventArgs e)
@@ -322,6 +364,12 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_speed_start_Click(object sender, EventArgs e)
         {
+            btn_speed_stop.Enabled = true;
+            btn_speed_stop.BackColor = Color.Red;
+            btn_speed_start.Enabled = false;
+            btn_speed_start.BackColor = Color.Gray;
+            btn_reset_speed.Enabled = false;
+            btn_reset_speed.BackColor = Color.Gray;
             
              MySqlConnection connection = new MySqlConnection(MyConnection2);
            
@@ -360,6 +408,13 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_speed_stop_Click(object sender, EventArgs e)
         {
+            btn_reset_speed.Enabled = true;
+            btn_speed_start.Enabled = true;
+            btn_speed_stop.Enabled = false;
+            btn_speed_stop.BackColor = Color.Gray;
+            btn_speed_start.BackColor = Color.Green;
+            btn_reset_speed.BackColor = Color.DarkBlue;
+            
             MySqlConnection connection = new MySqlConnection(MyConnection2);
 
             try
@@ -519,6 +574,10 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_reset_speed_Click(object sender, EventArgs e)
         {
+            btn_speed_start.Enabled = true;
+            btn_reset_speed.Enabled = false;
+            btn_reset_speed.BackColor = Color.Gray;
+
             counter = 0;
             listPointsOne.Clear();
             zedGraphControl1.Refresh();

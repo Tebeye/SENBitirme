@@ -108,6 +108,7 @@ namespace BitirmeProjesiArayuzProjesi
 
         private void btn_adminPage_Click(object sender, EventArgs e)
         {
+            string usbRecovery = "";
 
             string pathUsb = "Path";
             DriveInfo[] mydrives = DriveInfo.GetDrives();
@@ -124,7 +125,16 @@ namespace BitirmeProjesiArayuzProjesi
                     }
                 }
             }
-            string usbRecovery = System.IO.File.ReadAllText(@pathUsb + "RecoveryKey.txt");
+            try
+            {
+                usbRecovery = System.IO.File.ReadAllText(@pathUsb + "RecoveryKey.txt");
+            }
+            catch (Exception )
+            {
+
+                MessageBox.Show("Recovery key cannot be found");
+            }
+          
 
 
             if (usbRecovery == RecoveryMain)
